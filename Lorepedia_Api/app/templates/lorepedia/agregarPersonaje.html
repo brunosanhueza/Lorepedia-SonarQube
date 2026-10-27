@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Personaje - Lorepedia</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/personajes.css') }}"> 
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='Recursos Principal/imagenes/Lorepedia Logo 3.png') }}">
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+            <a class="btn" href="/personajes">⬅ Volver a la Lista</a>
+        </nav>
+
+        <section class="section" style="margin-top: 20px; color: white;">
+            <div class="columns">
+                <div class="column is-half is-offset-one-quarter">
+                    <h3 class="page-title">Agregar Nuevo Personaje ✨</h3>
+                    
+                    <form action="{{ url_for('guardarPersonaje') }}" method="post" style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px;">
+                        
+                        <label for="nombre" style="display:block; margin-top:10px;">Nombre:</label>
+                        <input required type="text" class="input" placeholder="Ej: Mario" name="nombre" id="nombre" style="width: 100%; padding: 8px;">
+                        
+                        <label for="descripcion" style="display:block; margin-top:10px;">Descripción:</label>
+                        <input required type="text" class="input" placeholder="Ej: Fontanero italiano..." name="descripcion" id="descripcion" style="width: 100%; padding: 8px;">
+                        
+                        <button type="submit" class="button is-success" style="margin-top: 20px; padding: 10px 20px; cursor: pointer;">Subir Personaje</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

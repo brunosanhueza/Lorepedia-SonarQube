@@ -1,0 +1,6 @@
+Instrucciones para correr todo :D
+
+
+ruta: C:\Users\bruno\Documents\Fullstack\Flasks
+
+comando: npx karma start
