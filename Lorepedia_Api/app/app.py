@@ -1,10 +1,15 @@
+import secrets
 from flask import Flask, render_template, redirect, request
+from flask_wtf.csrf import CSRFProtect
 from livereload import Server as sv
 
 from librerias import controlador_personajes as cp#anular chiste del CP dios tenemos más de 20 años
 
 
 app=Flask(__name__)
+# Generación dinámica y segura de clave de sesión para tokens CSRF
+app.config['SECRET_KEY'] = secrets.token_hex(32)
+csrf = CSRFProtect(app)
 
 
 @app.route('/login')#endpoint login
@@ -66,9 +71,11 @@ def agregarPersonaje():
 
 @app.route('/guardarPersonaje', methods=['POST'])
 def guardarPersonaje():
-    #se obtiene del formulario y desde el id "nombre" y "descripcion" del html logicamente
-    nombre = request.form["nombre"]
-    descripcion = request.form["descripcion"]
+    # Validación robusta de inputs en el servidor (server-side validation)
+    nombre = request.form.get("nombre", "").strip()
+    descripcion = request.form.get("descripcion", "").strip()
+    if not nombre or not descripcion:
+        return redirect('/agregarPersonaje')
     cp.insertar_personaje(nombre, descripcion)
     return redirect('/personajes') #volvemos a la pagina de personajes
     
@@ -83,8 +90,9 @@ def guardarPersonaje():
 
 @app.route('/eliminarPersonaje', methods=['POST'])
 def eliminarPersonaje():
-    id_personaje = request.form['id_personaje']
-    cp.eliminar_personaje(id_personaje)
+    id_personaje = request.form.get('id_personaje', '').strip()
+    if id_personaje:
+        cp.eliminar_personaje(id_personaje)
     return redirect('/personajes')
 
 

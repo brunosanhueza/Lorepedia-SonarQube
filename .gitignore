@@ -1,0 +1,17 @@
+# Dependencias
+node_modules/
+
+# Reportes de pruebas y cobertura
+coverage/
+
+# Archivos de trabajo de SonarQube / SonarCloud
+.scannerwork/
+
+# Documentos / Encargos
+EP3_ISY1102_Estudiante Encargo.pdf
+*.pdf
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class

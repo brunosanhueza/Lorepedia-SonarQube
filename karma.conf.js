@@ -35,13 +35,24 @@ files: [
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://www.npmjs.com/search?q=keywords:karma-preprocessor
     preprocessors: {
+      'Lorepedia_Api/app/static/js/*.js': ['coverage']
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://www.npmjs.com/search?q=keywords:karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
+
+
+    // Generación del reporte de cobertura para SonarQube y navegador
+    coverageReporter: {
+      dir: 'coverage/',
+      reporters: [
+        { type: 'html', subdir: 'report-html' },
+        { type: 'lcovonly', subdir: '.', file: 'lcov.info' }
+      ]
+    },
 
 
     // web server port
@@ -63,7 +74,8 @@ files: [
 
     // start these browsers
     // available browser launchers: https://www.npmjs.com/search?q=keywords:karma-launcher
-    browsers: ['Chrome'],
+    // En Linux usa FirefoxHeadless por defecto; en Windows/Mac usa Chrome
+    browsers: process.platform === 'linux' ? ['FirefoxHeadless'] : ['Chrome'],
 
 
     // Continuous Integration mode

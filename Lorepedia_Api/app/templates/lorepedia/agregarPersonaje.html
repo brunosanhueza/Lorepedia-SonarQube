@@ -21,6 +21,7 @@
                     <h3 class="page-title">Agregar Nuevo Personaje ✨</h3>
                     
                     <form action="{{ url_for('guardarPersonaje') }}" method="post" style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px;">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                         
                         <label for="nombre" style="display:block; margin-top:10px;">Nombre:</label>
                         <input required type="text" class="input" placeholder="Ej: Mario" name="nombre" id="nombre" style="width: 100%; padding: 8px;">

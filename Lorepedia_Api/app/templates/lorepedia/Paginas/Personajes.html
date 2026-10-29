@@ -57,7 +57,8 @@
         </div>
 
         <div class="search-bar">
-            <input type="text" id="character-search" class="search-input" placeholder="Buscar personaje por nombre...">
+            <label for="character-search" style="font-weight: bold; margin-right: 8px; color: white;">Buscar personaje:</label>
+            <input type="text" id="character-search" name="character-search" class="search-input" placeholder="Buscar personaje por nombre...">
         </div>
 
         <table class="tabla-personajes">
@@ -75,6 +76,7 @@
                     <td>{{ p.descripcion }}</td>
                     <td>
                         <form action="{{ url_for('eliminarPersonaje') }}" method="POST" onsubmit="return confirm('¿Seguro que quieres borrar a {{ p.nombre }}?');">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="id_personaje" value="{{ p.id_personaje }}">
                             <button type="submit" class="btn-eliminar">🗑️</button>
                         </form>

@@ -44,7 +44,7 @@ describe("Pruebas del archivo //create.js//", () => { //nombre de la agrupacion 
 
     // fingimos la funcion de guardar, sin embargo no se guarda nada, 
     // para que? para no llenar el localStorage original
-    spyOn(localStorage, 'setItem');
+    spyOn(Storage.prototype, 'setItem');
   });
 
 

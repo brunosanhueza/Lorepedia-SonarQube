@@ -16,6 +16,7 @@
         </div>
 
         <form class="login-form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <img src="../../static/img/user.png" alt="user-icon">
             <label for="username">Nombre de Usuario</label>
             <input type="text" id="username" placeholder="Ingresa tu usuario" required>
